@@ -1,17 +1,16 @@
-.TH _PRINTF 3 "09 July 2022" "printf_3_man page"
+.TH _PRINTF 3 "09 July 2022" "man_3_printf page"
 
 .SH NAME
 _printf - a replicate of the standard printf function
 
 .SH SYNOPSIS
  #include "main.h"
- int_printf ([OPTIONS][ARGUMENTS],...);
+ int _printf([OPTIONS][ARGUMENTS],...);
  int _printf(const char *string, ...);
 
 .SH DESCRIPTION
-The functions _printf() family produce output according to
-a format as described below. It will write output to stdout,
-the standard output stream.
+The function _printf() produces output according to a format as described on
+this man page. It will write output to stdout,the standard output stream.
 
 .SH CONVERSION SPECIFIERS
 
@@ -50,7 +49,7 @@ the return will be -1
 .SH EXAMPLE
 To print your name and the current year
 #include "main.h"
-_printf(" My name is %s, and we are in %d\n", name, year);
+_printf(" My name is %s, and we are in %d\\n", name, year);
 
 .SH SEE ALSO
 .I printf(3)
