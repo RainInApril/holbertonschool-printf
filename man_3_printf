@@ -1,0 +1,63 @@
+.TH _PRINTF 3 "09 July 2022" "printf_3_man page"
+
+.SH NAME
+_printf - a replicate of the standard printf function
+
+.SH SYNOPSIS
+ #include "main.h"
+ int_printf ([OPTIONS][ARGUMENTS],...);
+ int _printf(const char *string, ...);
+
+.SH DESCRIPTION
+The functions _printf() family produce output according to
+a format as described below. It will write output to stdout,
+the standard output stream.
+
+.SH CONVERSION SPECIFIERS
+
+.B c
+The int argument is converted to an unsigned char,
+and the resulting character is written.
+
+.B s
+the const char * argument is expected to be a pointer
+to an array of character type (pointer to a string).
+Characters from the array are written up to (but not including)
+a terminating null byte ('\0'); if a precision is specified,
+no more than the number specified are written. If a precision is given, no
+null byte need be present; if the precision is not
+specified, or is greater than the size of the array, the
+array must contain a terminating null byte.
+
+.B %
+A '%' is written. No argument is converted. The complete
+conversion specification is '%%'.
+
+.B d, i
+The int argument is converted to signed decimal notation.
+The precision, if any, gives the minimum number of digits
+that must appear; if the converted value requires fewer
+digits, it is padded on the left with zeros. The default
+precision is 1. When 0 is printed with an explicit
+precision 0,the output is empty.
+
+.SH RETURN VALUE
+When succesful, _printf() will return the number of characters printed and
+display on the screen.
+If an error is encountered, such as incorrect format or no character input,
+the return will be -1
+
+.SH EXAMPLE
+To print your name and the current year
+#include "main.h"
+_printf(" My name is %s, and we are in %d\n", name, year);
+
+.SH SEE ALSO
+.I printf(3)
+.I https://man7.org/linux/man-pages/man3/printf.3.html
+
+.SH BUGS
+Not any known
+
+.SH AUTHORS
+Gem Phan, Dylan Anderson, Karren Nonyta
