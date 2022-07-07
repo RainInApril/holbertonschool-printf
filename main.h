@@ -9,5 +9,6 @@ typedef struct modifier
 
 int print_i(va_list list);
 int print_c(va_list list);
+int print_s(va_list list);
 
 #endif /* _MAIN_H_ */
