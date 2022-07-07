@@ -1,4 +1,2 @@
 # holbertonschool-printf
-Dylan Test
-Gem Test
-K Test
+This directory was created for function _printf to print char.
