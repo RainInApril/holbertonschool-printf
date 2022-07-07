@@ -3,6 +3,6 @@
 
 typedef struct printf
 
-char *print_i(*format);
+char *print_i(char *format, va_list list);
 
 #endif /* _MAIN_H_ */
