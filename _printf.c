@@ -7,15 +7,14 @@ int print_mod(char *format, va_list list)
 	char *flag;
 	int index = 0;
 
-	s_mod selector[] {
-		{"c", print_char},
-		{"s", print_string},
-		{"i", print_int},
-		{"d", print_int},
+	flag = va_arg(list, char *);
+
+	s_mod selector[] = {
+		{"s", print_s},
 		{NULL, NULL}
 	};
-	*flag = format + 1;
-	if (flag == '%')
+	*flag = *(format + 1);
+	if (*(flag) == '%')
 	{
 		_putchar('%');
 		return (1);
@@ -24,6 +23,7 @@ int print_mod(char *format, va_list list)
 	{
 		if (selector[index].symbol == flag)
 		{
+			/* current error on return value during compile */
 			return (selector[index].func);
 		}
 		index++;
@@ -33,28 +33,28 @@ int print_mod(char *format, va_list list)
 
 int _printf(const char *format, ...)
 {
+	char * strcopy;
 	va_list list;
-	char *strcopy;
 	int index = 0, count;
 
 	/* starts the list at string format */
 	va_start(list, format);
 	/* duplicates string 'format' into strcopy to be manipulated */
+	strcopy = _strdup(format);
         /**
 	 * This loop searches for the '%' character and will send it too
 	 * the print_selector function to do the rest of the work
 	 */
-	while (format != NULL && (*(format + index) != '\0'))
+	while (strcopy != NULL && (*(strcopy + index) != '\0'))
 	{
-		if (format[index] == '%')
+		if (strcopy[index] == '%')
 		{
-			count = count + print_mod(format, list);
+			count = count + print_mod(strcopy, list);
 		}
-		_putchar(format[index]);
+		_putchar(strcopy[index]);
 		index++;
 	}
 	/* sets len to equal the length of string */
-	count += _strlen(strcopy);
 	/* returns the length of the string */
-	return (len);
+	return (count);
 }
