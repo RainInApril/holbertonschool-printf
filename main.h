@@ -3,4 +3,6 @@
 
 typedef struct printf
 
+char *print_i(*format);
+
 #endif /* _MAIN_H_ */
