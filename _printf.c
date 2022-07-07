@@ -23,6 +23,7 @@ int print_mod(char *format, va_list list)
 	{
 		if (selector[index].symbol == flag)
 		{
+			/* current error on return value during compile */
 			return (selector[index].func);
 		}
 		index++;
