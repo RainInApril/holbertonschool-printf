@@ -9,7 +9,7 @@
  * Return: 0
  */
 
-int print_c(va_list list)
+int print_char(va_list list)
 {
 	unsigned char ch;
 
