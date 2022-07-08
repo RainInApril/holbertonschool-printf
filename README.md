@@ -1,4 +1,4 @@
-#:printer:
+# :printer:
 # _printf()
 > A replicate of the standard printf() function
 
