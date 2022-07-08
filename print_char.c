@@ -4,17 +4,17 @@
 
 /**
  * print_char - prints the char to stdout
- * @c: the char to be rpinted
+ * @c: the char to be printed
  *
  * Return: 1
  */
 
-int print_char(va_list list)
+int print_c(va_list list)
 {
-	unsigned char c;
+	unsigned char ch;
 
-	c = va_arg(list, int);
-	_putchar(c);
+	ch = va_arg(list, int);
+	_putchar(ch);
 	return (1);
 }
 
