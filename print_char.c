@@ -4,7 +4,7 @@
 
 /**
  * print_char - prints the char to stdout
- * @c: the char to be rpinted
+ * @c: the char to be printed
  *
  * Return: 1
  */
