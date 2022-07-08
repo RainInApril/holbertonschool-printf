@@ -1,60 +1,68 @@
 #include <stdarg.h>
-
 #include "main.h"
 
-int print_mod(char *format, va_list list)
+/**
+ *print_func - takes % into account
+ *@modifier: modifier
+ *@list: the list of items in the argument
+ *Return: what needs to be returned
+ */
+
+int print_func(const char *modifier, va_list list)
 {
-	char *flag;
 	int index = 0;
 
-	s_mod selector[] {
+	s_mod selector[] = {
 		{"c", print_char},
-		{"s", print_string},
-		{"i", print_int},
-		{"d", print_int},
-		{NULL, NULL}
+		{"s", print_s},
+		{"\0", NULL}
 	};
-	*flag = format + 1;
-	if (flag == '%')
-	{
-		_putchar('%');
-		return (1);
-	}
 	while (selector[index].symbol != NULL)
 	{
-		if (selector[index].symbol == flag)
+		/* checks if selector matches the char after mod */
+		if (selector[index].symbol[0] == *(modifier + 1))
 		{
-			return (selector[index].func);
+			/* returns function that matches selector */
+			return (selector[index].func(list));
 		}
-		index++;
+		else if (*(modifier + 1) == '%')
+		{
+			_putchar('%');
+			return (0);
+		}
+		else
+			index++;
 	}
 	return (0);
 }
 
+/**
+ *_printf - main function to display
+ *@format: the string to be displayed
+ *Return: the string of characters via putchar
+ */
+
+
 int _printf(const char *format, ...)
 {
 	va_list list;
-	char *strcopy;
-	int index = 0, count;
+	int index = 0, count = 0;
 
-	/* starts the list at string format */
 	va_start(list, format);
-	/* duplicates string 'format' into strcopy to be manipulated */
-        /**
-	 * This loop searches for the '%' character and will send it too
-	 * the print_selector function to do the rest of the work
-	 */
-	while (format != NULL && (*(format + index) != '\0'))
+
+	while (format != NULL && (format[index] != '\0'))
 	{
 		if (format[index] == '%')
 		{
-			count = count + print_mod(format, list);
+			count = count + print_func(&format[index], list);
+			index = index + 2;
 		}
-		_putchar(format[index]);
-		index++;
+		else
+		{
+			count = count + _putchar(format[index]);
+			index = index + 1;
+		}
 	}
-	/* sets len to equal the length of string */
-	count += _strlen(strcopy);
-	/* returns the length of the string */
-	return (len);
+	/* returns value stored from print_func */
+	return (count);
 }
