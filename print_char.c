@@ -6,7 +6,7 @@
  * print_char - prints the char to stdout
  * @c: the char to be printed
  *
- * Return: 1
+ * Return: 0
  */
 
 int print_c(va_list list)
@@ -15,17 +15,5 @@ int print_c(va_list list)
 
 	ch = va_arg(list, int);
 	_putchar(ch);
-	return (1);
-}
-
-/**
- * print_percent - prints the %
- *
- * Return: 1
- */
-
-int print_percent(void)
-{
-	_putchar('%');
-	return (1);
+	return (0);
 }
