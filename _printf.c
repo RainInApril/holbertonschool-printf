@@ -6,7 +6,7 @@ int print_func(const char *modifier, va_list list)
 	int index = 0;
 
 	s_mod selector[] = {
-		{"s", print_s},
+		{"c", print_c},
 		{NULL, NULL}
 	};
 	while (selector[index].symbol != NULL)
