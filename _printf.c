@@ -15,6 +15,8 @@ int print_func(const char *modifier, va_list list)
 	s_mod selector[] = {
 		{"c", print_char},
 		{"s", print_str},
+		{"d", convert},
+		{"i", convert},
 		{NULL, NULL}
 	};
 	while (selector[index].symbol != NULL)
@@ -50,7 +52,7 @@ int _printf(const char *format, ...)
 	va_start(list, format);
 
 	if (format == NULL)
-		return (count);
+		return (-1);
 	while (format != NULL && (format[index] != '\0'))
 	{
 		if (format[index] == '%')
@@ -58,6 +60,7 @@ int _printf(const char *format, ...)
 			count = count + print_func(&format[index], list);
 			index = index + 2;
 		}
+		
 		else
 		{
 			count = count + _putchar(format[index]);
