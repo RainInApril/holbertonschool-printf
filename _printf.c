@@ -22,8 +22,13 @@ int print_func(const char *modifier, va_list list)
 	};
 	while (selector[index].symbol != NULL)
 	{
+		if (selector[index].symbol[0] != afterPercent)
+		{
+			_putchar('%');
+			return (1);
+		}
 		/* checks if selector matches the char after mod */
-		if (selector[index].symbol[0] == *(modifier + 1))
+		if (selector[index].symbol[0] == afterPercent)
 		{
 			/* returns function that matches selector */
 			return (selector[index].func(list));
@@ -59,7 +64,7 @@ int _printf(const char *format, ...)
 		if (format[index] == '%')
 		{
 			count = count + print_func(&format[index], list);
-			index = index + 2;
+			index = index + 1;
 		}
 
 		else
