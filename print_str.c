@@ -17,10 +17,11 @@ int print_str(va_list list)
 		string = "(null)";
 	}
 	count = 0;
+	/* increments count until NULL */
 	while (string[count] && string != NULL)
 	{
 		_putchar(string[count]);
 		count++;
 	}
-	return (0);
+	return (count);
 }

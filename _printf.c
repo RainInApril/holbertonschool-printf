@@ -28,7 +28,7 @@ int print_func(const char *modifier, va_list list)
 		else if (*(modifier + 1) == '%')
 		{
 			_putchar('%');
-			return (0);
+			return (1);
 		}
 		else
 			index++;
