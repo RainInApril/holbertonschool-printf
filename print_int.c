@@ -2,7 +2,7 @@
 
 /**
  * print_int - prints int
- * @n: the int to be printed
+ * @a: the int to be printed
  *
  * Return: 0
  */
@@ -11,10 +11,10 @@ int print_int(int a)
 {
 	long digit, num;
 	int j, i = 0;
-	
+
 
 	num = a;
-	
+
 	/* prints negative if num is less than 0 */
 	if (num < 0)
 	{

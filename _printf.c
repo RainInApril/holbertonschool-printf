@@ -60,7 +60,7 @@ int _printf(const char *format, ...)
 			count = count + print_func(&format[index], list);
 			index = index + 2;
 		}
-		
+
 		else
 		{
 			count = count + _putchar(format[index]);
