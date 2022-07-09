@@ -17,6 +17,10 @@ int print_func(const char *modifier, va_list list)
 		{"s", print_str},
 		{NULL, NULL}
 	};
+	if (modifier == NULL)
+	{
+		return (NULL);
+	}
 	while (selector[index].symbol != NULL)
 	{
 		/* checks if selector matches the char after mod */
@@ -49,10 +53,6 @@ int _printf(const char *format, ...)
 
 	va_start(list, format);
 
-	if (format == NULL)
-	{
-		return (1);
-	}
 	while (format != NULL && (format[index] != '\0'))
 	{
 		if (format[index] == '%')
