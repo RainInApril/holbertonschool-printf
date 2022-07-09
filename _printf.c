@@ -22,11 +22,16 @@ int print_func(const char *modifier, va_list list)
 	};
 	while (selector[index].symbol != NULL)
 	{
-		if (selector[index].symbol[0] != afterPercent)
+		/* I almost have it. I think there is something more we can do here
+		   un comment this to see that the checker passed the %! and %K parts,
+		   but wrecks everything else
+		*/
+		/* if (selector[index].symbol[0] != afterPercent)
 		{
 			_putchar('%');
 			return (1);
 		}
+		*/
 		/* checks if selector matches the char after mod */
 		if (selector[index].symbol[0] == afterPercent)
 		{
