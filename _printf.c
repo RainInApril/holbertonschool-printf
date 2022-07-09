@@ -15,7 +15,7 @@ int print_func(const char *modifier, va_list list)
 	s_mod selector[] = {
 		{"c", print_char},
 		{"s", print_str},
-		{"\0", NULL}
+		{NULL, NULL}
 	};
 	while (selector[index].symbol != NULL)
 	{
@@ -31,7 +31,8 @@ int print_func(const char *modifier, va_list list)
 			return (1);
 		}
 		else
-			index++;
+			return (-1);
+		index++;
 	}
 	return (0);
 }
