@@ -64,6 +64,7 @@ int _printf(const char *format, ...)
 			index = index + 1;
 		}
 	}
+	va_end(list);
 	/* returns value stored from print_func */
 	return (count);
 }
