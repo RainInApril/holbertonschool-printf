@@ -19,7 +19,7 @@ int print_func(const char *modifier, va_list list)
 	};
 	if (modifier == NULL)
 	{
-		return (NULL);
+		return (-1);
 	}
 	while (selector[index].symbol != NULL)
 	{
