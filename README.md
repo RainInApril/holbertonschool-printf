@@ -11,6 +11,16 @@ The standard printf() function helps to display to the user the various characte
  int _printf([OPTIONS][ARGUMENTS],...);
  int _printf(const char *string, ...);
 ```
+## SPECIFIER ##
+
+| Specifier | Output                               | Example |
+|-----------|--------------------------------------|---------|
+| %c        | Print a single **c**haracter         | C, c    |
+| %s        | Print a **s**tring of characters     | Hello   |
+| %%        | Print a percent sign                 | %       |
+| %i        | Print an **i**nteger in base 10      | 1       |
+| %d        | Print a **d**ecimal (base 10) number | 1       |
+
 ## Example ##
 
 To print your name and the current year
