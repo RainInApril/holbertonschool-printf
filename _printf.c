@@ -20,6 +20,11 @@ int print_func(const char *modifier, va_list list)
 		{"i", convert},
 		{NULL, NULL}
 	};
+	while (afterPercent != selector[index].symbol[0])
+	{
+		_putchar(*modifier);
+		return (1);
+	}
 	while (selector[index].symbol != NULL)
 	{
 		/* I almost have it. I think there is something more we can do here
