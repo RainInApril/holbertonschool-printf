@@ -8,10 +8,11 @@
  *Return: what needs to be returned
  */
 
+
 int print_func(const char *modifier, va_list list)
 {
 	int index = 0;
-	char afterPercent = *(modifier + 1);
+	/* char afterPercent = *(modifier + 1);*/
 
 	s_mod selector[] = {
 		{"c", print_char},
@@ -20,39 +21,28 @@ int print_func(const char *modifier, va_list list)
 		{"i", convert},
 		{NULL, NULL}
 	};
-	while (afterPercent != selector[index].symbol[0])
-	{
-		_putchar(*modifier);
-		return (1);
-	}
 	while (selector[index].symbol != NULL)
 	{
-		/* I almost have it. I think there is something more we can do here
-		   un comment this to see that the checker passed the %! and %K parts,
-		   but wrecks everything else
-		*/
-		/* if (selector[index].symbol[0] != afterPercent)
-		{
-			_putchar('%');
-			return (1);
-		}
-		*/
 		/* checks if selector matches the char after mod */
-		if (selector[index].symbol[0] == afterPercent)
+		if (selector[index].symbol[0] == *(modifier + 1))
 		{
 			/* returns function that matches selector */
 			return (selector[index].func(list));
 		}
-		else if (afterPercent == '%')
+			else if (*(modifier + 1) == '%')
 		{
 			_putchar('%');
 			return (1);
-		}
+			}
 		else
-			index++;
+		index++;
 	}
 	return (0);
+
 }
+
+
+
 
 /**
  *_printf - main function to display
@@ -69,13 +59,30 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 		return (-1);
-	while (format != NULL && (format[index] != '\0'))
+
+	if (format != NULL)
+	while (format[index] != '\0')
 	{
-		if (format[index] == '%')
+		if (format[index] == '%' && format[index + 1] == 'c')
 		{
 			count = count + print_func(&format[index], list);
-			index = index + 1;
+			index = index + 2;
 		}
+		   if (format[index] == '%' && format[index + 1] == 's')
+                {
+                        count = count + print_func(&format[index], list);
+                        index = index + 2;
+                }
+		      if (format[index] == '%' && format[index + 1] == 'd')
+                {
+                        count = count + print_func(&format[index], list);
+                        index = index + 2;
+                }
+		         if (format[index] == '%' && format[index + 1] == 'i')
+                {
+                        count = count + print_func(&format[index], list);
+                        index = index + 2;
+                }
 
 		else
 		{
