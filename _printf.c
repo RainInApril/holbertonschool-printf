@@ -29,15 +29,15 @@ int print_func(const char *modifier, va_list list)
 			/* returns function that matches selector */
 			return (selector[index].func(list));
 		}
-		/*else if (*(modifier + 1) == '%')
+		else if (*(modifier + 1) == '%')
 		{
 			_putchar('%');
 			return (1);
-			} */
+			} 
 		else
 		index++;
 	}
-	return (-1);
+	return (0);
 
 }
 
