@@ -37,7 +37,7 @@ int print_func(const char *modifier, va_list list)
 		else
 		index++;
 	}
-	return (0);
+	return (-1);
 
 }
 
