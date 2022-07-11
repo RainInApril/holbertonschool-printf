@@ -22,10 +22,6 @@ int print_func(const char *modifier, va_list list)
 		{"%", print_percent},
 		{NULL, NULL}
 	};
-	if (*modifier == '%' && *(modifier + 1) == '\0')
-	{
-		return (0);
-	}
 	while (selector[index].symbol != NULL)
 	{
 		/* checks if selector matches the char after mod */
@@ -36,7 +32,7 @@ int print_func(const char *modifier, va_list list)
 		}
 		index++;
 	}
-/*	_putchar(*modifier);
+	/*_putchar(*modifier);
 	_putchar(*(modifier + 1)); */
 	return (-1);
 }
@@ -64,29 +60,25 @@ int _printf(const char *format, ...)
 	{
 		if (format[index] == '%')
 		{
-/*			count = count + print_func(&format[index], list);
+			if (format[index + 1] == '\0' && index == 0)
+				return (-1);
+			/*count = count + print_func(&format[index], list);
 			index = index + 2; */
 
-/* define stored as value from print_func if find % */
-
+			/* define stored as value from print_func if find % */
 			stored = print_func(&format[index], list);
-			 if (stored == -1)
-			 {
+			if (stored == -1)
+			{
 			 	_putchar(format[index]);
 			 	_putchar(format[index + 1]);
 			 	count = count + 2;
 			 	index = index + 2;
 			}
-			 if (stored == 0)
-			 {
-				 count = count + stored;
-				 index = index + 2;
-			 }
 			else
 			{
 				count = count + stored;
 				index = index + 2;
-				}
+			}
 
 		}
 		else
