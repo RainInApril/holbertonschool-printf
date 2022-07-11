@@ -12,7 +12,6 @@
 int print_func(const char *modifier, va_list list)
 {
 	int index = 0;
-	/* char afterPercent = *(modifier + 1);*/
 
 	s_mod selector[] = {
 		{"c", print_char},
@@ -32,8 +31,6 @@ int print_func(const char *modifier, va_list list)
 		}
 		index++;
 	}
-	/*_putchar(*modifier);
-	_putchar(*(modifier + 1)); */
 	return (-1);
 }
 
@@ -46,46 +43,33 @@ int print_func(const char *modifier, va_list list)
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int index = 0;
-	/* count number of total character displayed  */
-	int count = 0;
-	int stored = 0;
+	int index = 0, count = 0, stored = 0;
 
 	va_start(list, format);
 
 	if (format == NULL)
 		return (-1);
-
 	while (format[index] != '\0')
 	{
 		if (format[index] == '%')
 		{
 			if (format[index + 1] == '\0' && index == 0)
 				return (-1);
-			/*count = count + print_func(&format[index], list);
-			index = index + 2; */
 
 			/* define stored as value from print_func if find % */
 			stored = print_func(&format[index], list);
 			if (stored == -1)
 			{
-			 	_putchar(format[index]);
-			 	_putchar(format[index + 1]);
-			 	count = count + 2;
-			 	index = index + 2;
-			}
-			else
-			{
-				count = count + stored;
+				_putchar(format[index]);
+				_putchar(format[index + 1]);
+				count = count + 2;
 				index = index + 2;
 			}
-
+			count = count + stored;
+			index = index + 2;
 		}
-		else
-		{
-			count = count + _putchar(format[index]);
-			index = index + 1;
-		}
+		count = count + _putchar(format[index]);
+		index = index + 1;
 	}
 	va_end(list);
 	return (count);
