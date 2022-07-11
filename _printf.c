@@ -22,7 +22,10 @@ int print_func(const char *modifier, va_list list)
 		{"%", print_percent},
 		{NULL, NULL}
 	};
-
+	if (*modifier == '%' && *(modifier + 1) == '\0')
+	{
+		return (0);
+	}
 	while (selector[index].symbol != NULL)
 	{
 		/* checks if selector matches the char after mod */
@@ -65,7 +68,7 @@ int _printf(const char *format, ...)
 			index = index + 2; */
 
 /* define stored as value from print_func if find % */
- 
+
 			stored = print_func(&format[index], list);
 			if (stored == '\0')
 			{
