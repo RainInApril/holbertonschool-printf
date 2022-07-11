@@ -7,42 +7,45 @@
  * Return: 0
  */
 
-int print_int(int a)
+int print_int(int num)
 {
-	long digit, num;
+	long int decimalPoint, numToBePrinted;
 	int j;
 
 
-	num = a;
+	numToBePrinted = num;
 
-	/* prints negative if num is less than 0 */
-	if (num < 0)
+	/* converts num to positive to be manipulated */
+	if (numToBePrinted < 0)
 	{
-		num = num * (-1);
+		numToBePrinted = numToBePrinted * (-1);
 		_putchar('-');
 	}
 
-	digit = 1;
+	decimalPoint = 1;
 	j = 1;
+	/* moves decimal to left to check size of num */
 	while (j)
 	{
-		if (num / (digit * 10) > 0)
-			digit = digit * 10;
+		if (numToBePrinted / (decimalPoint * 10) > 0)
+			decimalPoint = decimalPoint * 10;
 		else
 			j = 0;
 	}
 
-	while (num >= 0)
+	while (numToBePrinted >= 0)
 	{
-		if (digit == 1)
+		/* prints last digit of num */
+		if (decimalPoint == 1)
 		{
-			_putchar(num % 10 + '0');
-			num = -1;
+			_putchar(numToBePrinted % 10 + '0');
+			numToBePrinted = -1;
 		}
 		else
 		{
-			_putchar((num / digit % 10) + '0');
-			digit = digit / 10;
+			/* prints all other digits starting from the left */
+			_putchar((numToBePrinted / decimalPoint % 10) + '0');
+			decimalPoint = decimalPoint / 10;
 		}
 	}
 	return (1);
