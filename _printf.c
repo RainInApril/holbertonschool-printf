@@ -67,6 +67,11 @@ int _printf(const char *format, ...)
 /* define stored as value from print_func if find % */
  
 			stored = print_func(&format[index], list);
+			if (stored == '\0')
+			{
+				_putchar(0);
+				return (0);
+			}
 			 if (stored == -1)
 			 {
 			 	_putchar(format[index]);
