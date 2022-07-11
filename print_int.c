@@ -2,16 +2,15 @@
 
 /**
  * print_int - prints int
- * @a: the int to be printed
+ * @num: the int to be printed
  *
- * Return: 0
+ * Return: length of num
  */
 
 int print_int(int num)
 {
 	long int decimalPoint, numToBePrinted;
-	int j;
-
+	int j, numLen = 0;
 
 	numToBePrinted = num;
 
@@ -20,8 +19,8 @@ int print_int(int num)
 	{
 		numToBePrinted = numToBePrinted * (-1);
 		_putchar('-');
+		numLen++;
 	}
-
 	decimalPoint = 1;
 	j = 1;
 	/* moves decimal to left to check size of num */
@@ -32,7 +31,6 @@ int print_int(int num)
 		else
 			j = 0;
 	}
-
 	while (numToBePrinted >= 0)
 	{
 		/* prints last digit of num */
@@ -40,13 +38,15 @@ int print_int(int num)
 		{
 			_putchar(numToBePrinted % 10 + '0');
 			numToBePrinted = -1;
+			numLen++;
 		}
 		else
 		{
 			/* prints all other digits starting from the left */
 			_putchar((numToBePrinted / decimalPoint % 10) + '0');
 			decimalPoint = decimalPoint / 10;
+			numLen++;
 		}
 	}
-	return (1);
+	return (numLen);
 }

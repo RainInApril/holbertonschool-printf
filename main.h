@@ -17,7 +17,7 @@ typedef struct modifier
 } s_mod;
 
 int _printf(const char *format, ...);
-int print_int(int a);
+int print_int(int num);
 int print_char(va_list list);
 int print_str(va_list list);
 int _putchar(char c);
