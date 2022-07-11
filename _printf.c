@@ -33,9 +33,9 @@ int print_func(const char *modifier, va_list list)
 		}
 		index++;
 	}
-	_putchar(*modifier);
-	_putchar(*(modifier + 1));
-	return (2);
+/*	_putchar(*modifier);
+	_putchar(*(modifier + 1)); */
+	return (-1);
 }
 
 /**
@@ -50,7 +50,7 @@ int _printf(const char *format, ...)
 	int index = 0;
 	/* count number of total character displayed  */
 	int count = 0;
-	/* int stored = 0;*/
+	int stored = 0;
 
 	va_start(list, format);
 
@@ -61,24 +61,24 @@ int _printf(const char *format, ...)
 	{
 		if (format[index] == '%')
 		{
-			count = count + print_func(&format[index], list);
-			index = index + 2;
+/*			count = count + print_func(&format[index], list);
+			index = index + 2; */
 
 /* define stored as value from print_func if find % */
  
-			/*stored = print_func(&format[index], list);
-			 *if (stored == -1)
-			 *{
-			 *	_putchar(format[index]);
-			 *	_putchar(format[index + 1]);
-			 *	count = count + 2;
-			 *	index = index + 2;
+			stored = print_func(&format[index], list);
+			 if (stored == -1)
+			 {
+			 	_putchar(format[index]);
+			 	_putchar(format[index + 1]);
+			 	count = count + 2;
+			 	index = index + 2;
 			}
 			else
 			{
 				count = count + stored;
 				index = index + 2;
-				}*/
+				}
 
 		}
 		else
