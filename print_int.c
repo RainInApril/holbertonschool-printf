@@ -10,7 +10,7 @@
 int print_int(int a)
 {
 	long digit, num;
-	int j, i = 0;
+	int j;
 
 
 	num = a;
@@ -20,7 +20,6 @@ int print_int(int a)
 	{
 		num = num * (-1);
 		_putchar('-');
-		i = i + 1;
 	}
 
 	digit = 1;
@@ -39,14 +38,12 @@ int print_int(int a)
 		{
 			_putchar(num % 10 + '0');
 			num = -1;
-			i = i + 1;
 		}
 		else
 		{
 			_putchar((num / digit % 10) + '0');
 			digit = digit / 10;
-			i = i + 1;
 		}
 	}
-	return (i);
+	return (1);
 }
