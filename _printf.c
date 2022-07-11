@@ -65,11 +65,17 @@ int _printf(const char *format, ...)
 				count = count + 2;
 				index = index + 2;
 			}
-			count = count + stored;
-			index = index + 2;
+			else
+			{
+				count = count + stored;
+				index = index + 2;
+			}
 		}
-		count = count + _putchar(format[index]);
-		index = index + 1;
+		else
+		{
+			count = count + _putchar(format[index]);
+			index = index + 1;
+		}
 	}
 	va_end(list);
 	return (count);
