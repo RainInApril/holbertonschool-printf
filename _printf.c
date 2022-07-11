@@ -5,7 +5,7 @@
  *print_func - takes % into account
  *@modifier: modifier
  *@list: the list of items in the argument
- *Return: what needs to be returned
+ *Return: number of chars displayed or -1 on invalid symbol
  */
 
 
@@ -19,8 +19,10 @@ int print_func(const char *modifier, va_list list)
 		{"s", print_str},
 		{"d", convert},
 		{"i", convert},
+		{"%", print_percent},
 		{NULL, NULL}
 	};
+
 	while (selector[index].symbol != NULL)
 	{
 		/* checks if selector matches the char after mod */
@@ -29,20 +31,12 @@ int print_func(const char *modifier, va_list list)
 			/* returns function that matches selector */
 			return (selector[index].func(list));
 		}
-		else if (*(modifier + 1) == '%')
-		{
-			_putchar('%');
-			return (1);
-			} 
-		else
 		index++;
 	}
-	return (0);
-
+	_putchar(*modifier);
+	_putchar(*(modifier + 1));
+	return (2);
 }
-
-
-
 
 /**
  *_printf - main function to display
@@ -53,37 +47,40 @@ int print_func(const char *modifier, va_list list)
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int index = 0, count = 0;
+	int index = 0;
+	/* count number of total character displayed  */
+	int count = 0;
+	/* int stored = 0;*/
 
 	va_start(list, format);
 
 	if (format == NULL)
 		return (-1);
 
-	if (format != NULL)
 	while (format[index] != '\0')
 	{
-		if (format[index] == '%' && format[index + 1] == 'c')
+		if (format[index] == '%')
 		{
 			count = count + print_func(&format[index], list);
 			index = index + 2;
-		}
-		   if (format[index] == '%' && format[index + 1] == 's')
-                {
-                        count = count + print_func(&format[index], list);
-                        index = index + 2;
-                }
-		      if (format[index] == '%' && format[index + 1] == 'd')
-                {
-                        count = count + print_func(&format[index], list);
-                        index = index + 2;
-                }
-		         if (format[index] == '%' && format[index + 1] == 'i')
-                {
-                        count = count + print_func(&format[index], list);
-                        index = index + 2;
-                }
 
+/* define stored as value from print_func if find % */
+ 
+			/*stored = print_func(&format[index], list);
+			 *if (stored == -1)
+			 *{
+			 *	_putchar(format[index]);
+			 *	_putchar(format[index + 1]);
+			 *	count = count + 2;
+			 *	index = index + 2;
+			}
+			else
+			{
+				count = count + stored;
+				index = index + 2;
+				}*/
+
+		}
 		else
 		{
 			count = count + _putchar(format[index]);
@@ -91,6 +88,5 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(list);
-	/* returns value stored from print_func */
 	return (count);
 }
