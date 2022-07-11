@@ -8,9 +8,8 @@
 
 int print_percent(va_list list)
 {
-	char percent;
+	list = list;
 
-	percent = va_arg(list, int);
-	_putchar(percent);
+	_putchar('%');
 	return (1);
 }
